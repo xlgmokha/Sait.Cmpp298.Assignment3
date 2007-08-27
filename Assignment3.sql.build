@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project name="Assignment3.sql.build">
+	<property name="sql.dir" value="${base.dir}\sql"/>
+	<property name="sql.data.dir" value="${sql.dir}\data"/>
+	
+	<fileset id="db.files">
+		<include name="${sql.dir}\db.sql" asis="true"/>
+		<include name="${sql.dir}\tables.sql" asis="true"/>
+		<include name="${sql.dir}\indexes.sql" asis="true"/>
+		<include name="${sql.dir}\constraints.sql" asis="true"/>
+		<include name="${sql.dir}\storedprocedures.sql" asis="true"/>
+		<include name="${sql.dir}\functions.sql" asis="true"/>
+		<include name="${sql.dir}\grants.sql" asis="true"/>
+	</fileset>
+
+	<fileset id="data.files">
+		<include name="${sql.data.dir}\States.sql" asis="true"/>
+		<include name="${sql.data.dir}\GLAccounts.sql" asis="true"/>
+		<include name="${sql.data.dir}\Terms.sql" asis="true"/>
+		<include name="${sql.data.dir}\Vendors.sql" asis="true"/>		
+		<include name="${sql.data.dir}\Invoices.sql" asis="true"/>
+		<include name="${sql.data.dir}\InvoiceLineItems.sql" asis="true"/>		
+	</fileset>
+
+	<target name="exec.sql.template" depends="convert.template">
+		<echo message="Connecting to database server..." />
+		<echo message="${sqlcmd.exe} ${sqlcmd.connectionstring} -b -i ${target}" />
+		<exec program="${sqlcmd.exe}" commandline="${sqlcmd.connectionstring} -b -i ${target}" />
+	</target>
+
+	<target name="build.db">
+		<foreach item="File" property="filename">
+			<in>
+				<items refid="db.files"/>
+			</in>
+			<do>
+				<echo message="Processing sql file: ${filename}"/>
+				<property name="target" value="${filename}"/>
+				<call target="exec.sql.template"/>
+			</do>
+		</foreach>
+	</target>
+
+	<target name="load.data" depends="build.db">
+		<foreach item="File" property="filename">
+			<in>
+				<items refid="data.files"/>
+			</in>
+			<do>
+				<echo message="Processing sql file: ${filename}"/>
+				<property name="target" value="${filename}"/>
+				<call target="exec.sql.template"/>
+			</do>
+		</foreach>
+	</target>
+</project>

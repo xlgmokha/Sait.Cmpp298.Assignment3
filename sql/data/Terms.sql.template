@@ -1,0 +1,9 @@
+USE [@initial.catalog@];
+
+SET IDENTITY_INSERT @initial.catalog@.dbo.Terms ON
+insert into [dbo].[Terms]([TermsID],[Description],[DueDays]) values (1,'Net due 10 days',10);
+insert into [dbo].[Terms]([TermsID],[Description],[DueDays]) values (2,'Net due 20 days',20);
+insert into [dbo].[Terms]([TermsID],[Description],[DueDays]) values (3,'Net due 30 days',30);
+insert into [dbo].[Terms]([TermsID],[Description],[DueDays]) values (4,'Net due 60 days',60);
+insert into [dbo].[Terms]([TermsID],[Description],[DueDays]) values (5,'Net due 90 days',90);
+SET IDENTITY_INSERT @initial.catalog@.dbo.Terms OFF

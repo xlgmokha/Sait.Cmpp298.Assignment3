@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<project name="Sait.Cmpp298.Assignment3" default="all">
+    <property name="debug" value="true" />
+	
+	<property name="base.dir" value="${project::get-base-directory()}"/>	
+	<property name="build.dir" value="${base.dir}\build"/>
+	<property name="deploy.dir" value="${base.dir}\deploy"/>
+	<property name="tools.dir" value="${base.dir}\tools"/>
+	<property name="lib.dir" value="${base.dir}\lib"/>
+	<property name="config.dir" value="${base.dir}\config" />
+	<property name="src.dir" value="${base.dir}\src"/>
+	<property name="app.src.dir" value="${src.dir}\app"/>
+	<property name="test.src.dir" value="${src.dir}\test"/>
+	<property name="desktop.ui.dir" value="${app.src.dir}\Cmpp298.Assignment3.Desktop.UI"/>	
+
+	<property name="assignment3.lib" value="assignment3.dll" />
+	<property name="test.lib" value="assignment3.test.dll"/>
+	<property name="assignment3.exe" value="${project::get-name()}.exe" />
+	<property name="app.config" value="${config.dir}\app.config" />	
+	
+	<fileset id="test.references">
+		<include name="${tools.dir}\mbunit\MbUnit.Framework.dll" />
+		<include name="${tools.dir}\rhinomocks\Rhino.Mocks.dll" />
+		<include name="${build.dir}\${assignment3.lib}"/>
+	</fileset>
+
+	<fileset id="app.source.files">
+		<exclude name="${desktop.ui.dir}\**\*.cs" />
+		<exclude name="${app.src.dir}\**\AssemblyInfo.cs" />
+		<include name="${app.src.dir}\**\*.cs"/>
+	</fileset>
+
+	<fileset id="app.desktop.files">
+		<include name="${desktop.ui.dir}\**\*.cs" />
+	</fileset>
+
+	<include buildfile="Assignment3.sql.build"/>
+	<if test="${file::exists('local.properties.xml')}">
+		<echo message="Loading local.properties.xml" />
+		<include buildfile="local.properties.xml" />
+	</if>
+	
+    <target name="all" depends="build.db" description="Builds database" />
+	
+	<target name="convert.template">
+		<copy file="${target}.template" tofile="${target}" overwrite="true">
+			<filterchain>
+				<replacetokens>
+					<token key="initial.catalog" value="${initial.catalog}" />
+					<token key="sqlcmd.connectionstring" value="${sqlcmd.connectionstring}" />
+					<token key="config.connectionstring" value="${config.connectionstring}" />
+					<token key="database.provider" value="${database.provider}" />
+					<token key="database.path" value="${database.path}" />
+				</replacetokens>
+			</filterchain>
+		</copy>
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${deploy.dir}" />
+	</target>
+
+	<target name="init" depends="clean">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${deploy.dir}" />
+	</target>
+	
+	<target name="compile" depends="init">
+		<csc output="${compile.dir}\${assignment3.lib}" target="library" debug="${debug}">
+			<sources refid="app.source.files" />
+			<references refid="test.references" />
+		</csc>
+	</target>
+
+	<target name="test.compile">
+		<property name="target" value="${app.config}"/>
+		<call target="convert.template"/>	
+	
+		<property name="compile.dir" value="${build.dir}" />
+		<call target="compile"/>
+		<csc output="${compile.dir}\${test.lib}" target="library" debug="${debug}">
+			<sources>
+				<include name="${test.src.dir}\**\*.cs"/>
+				<exclude name="${test.src.dir}\**\AssemblyInfo.cs" />
+			</sources>
+			<references refid="test.references"/>
+		</csc>
+	</target>
+	
+	<target name="test" depends="test.compile">
+		<copy file="${app.config}" tofile="${build.dir}\${test.lib}.config"/>
+
+		<copy todir="${build.dir}" flatten="true">
+			<fileset basedir="${tools.dir}\rhinomocks">
+				<include name="**\Rhino.Mocks.dll" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dir}" flatten="true">
+			<fileset basedir="${tools.dir}\mbunit">
+				<include name="*.dll" />
+			</fileset>			
+		</copy>		
+		
+		<exec basedir="${tools.dir}\mbunit" 
+			useruntimeengine="true" 
+			workingdir="${build.dir}"
+			program="mbunit.Cons.exe" 
+			failonerror="false"
+			commandline="${test.lib} /report-type:Text /rf:${build.dir} /rnf:Report" />		
+
+		<call target="test.report"/>	
+			
+	</target>	
+		
+	<target name="test.report">	
+			<exec basedir="${system.root}"
+				program="notepad.exe"
+				commandline="${build.dir}\Report.txt" />
+	</target>			
+		
+	<target name="deploy" depends="init">
+		<property name="target" value="${app.config}"/>
+		<call target="convert.template"/>
+		<copy file="${app.config}" tofile="${deploy.dir}\${assignment3.exe}.config"/>
+	
+		<csc output="${deploy.dir}\${assignment3.exe}" target="winexe" debug="false" optimize="true">
+			<sources>	
+				<exclude name="${app.src.dir}\**\AssemblyInfo.cs" />
+				<include name="${app.src.dir}\**\*.cs"/>
+				<exclude name="${desktop.ui.dir}\**\AssemblyInfo.cs" />
+				<include name="${desktop.ui.dir}\**\*.cs" />
+				<include name="${config.dir}\**\AssemblyInfo.cs"/>
+			</sources>
+			<resources dynamicprefix="true" prefix="HelloWorld">
+				<include name="${desktop.ui.dir}\**\*.resx" />
+			</resources>
+		</csc>
+	</target>
+
+</project>

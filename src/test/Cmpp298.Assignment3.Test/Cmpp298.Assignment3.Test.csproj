@@ -1,0 +1,82 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C9135CE2-7960-4E21-ACE8-2769BEF35C01}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cmpp298.Assignment3.Test</RootNamespace>
+    <AssemblyName>Cmpp298.Assignment3.Test</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MbUnit.Framework, Version=1.0.2700.29885, Culture=neutral, PublicKeyToken=5e72ecd30bc408d5">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\tools\MbUnit\MbUnit.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.1.0.584, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\tools\rhinomocks\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dto\SaveInvoiceDtoTest.cs" />
+    <Compile Include="Presentation\DeleteInvoicePresenterTest.cs" />
+    <Compile Include="Presentation\EditInvoicePresenterTest.cs" />
+    <Compile Include="Task\InvoiceTaskTest.cs" />
+    <Compile Include="Presentation\NewInvoicePresenterTest.cs" />
+    <Compile Include="Presentation\InvoicesMainPresenterTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Task\VendorTaskTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\app\Cmpp298.Assignment3.DataAccess\Cmpp298.Assignment3.DataAccess.csproj">
+      <Project>{48B09B0E-F2D5-463D-9FAB-C1781CA46D4D}</Project>
+      <Name>Cmpp298.Assignment3.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\Cmpp298.Assignment3.Desktop.Presentation\Cmpp298.Assignment3.Desktop.Presentation.csproj">
+      <Project>{62EA2002-B0ED-4E9C-945E-B77552A0669C}</Project>
+      <Name>Cmpp298.Assignment3.Desktop.Presentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\Cmpp298.Assignment3.Dto\Cmpp298.Assignment3.Dto.csproj">
+      <Project>{29260A8E-3F7B-4D9B-BBE3-81210F4B9E5B}</Project>
+      <Name>Cmpp298.Assignment3.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\Cmpp298.Assignment3.Task\Cmpp298.Assignment3.Task.csproj">
+      <Project>{A747CA6E-EEA1-42E0-BA90-69317F8BF45D}</Project>
+      <Name>Cmpp298.Assignment3.Task</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

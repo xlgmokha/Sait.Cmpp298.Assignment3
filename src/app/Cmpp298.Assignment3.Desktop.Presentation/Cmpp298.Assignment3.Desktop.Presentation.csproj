@@ -1,0 +1,68 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{62EA2002-B0ED-4E9C-945E-B77552A0669C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cmpp298.Assignment3.Desktop.Presentation</RootNamespace>
+    <AssemblyName>Cmpp298.Assignment3.Desktop.Presentation</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DeleteInvoicePresenter.cs" />
+    <Compile Include="EditInvoicePresenter.cs" />
+    <Compile Include="IDeleteInvoiceView.cs" />
+    <Compile Include="IEditInvoiceView.cs" />
+    <Compile Include="IInvoicesMainView.cs" />
+    <Compile Include="INewInvoiceView.cs" />
+    <Compile Include="InvoicesMainPresenter.cs" />
+    <Compile Include="NewInvoicePresenter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cmpp298.Assignment3.Domain\Cmpp298.Assignment3.Domain.csproj">
+      <Project>{C11B2649-751A-4F49-B28D-AB36A8213674}</Project>
+      <Name>Cmpp298.Assignment3.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cmpp298.Assignment3.Dto\Cmpp298.Assignment3.Dto.csproj">
+      <Project>{29260A8E-3F7B-4D9B-BBE3-81210F4B9E5B}</Project>
+      <Name>Cmpp298.Assignment3.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cmpp298.Assignment3.Task\Cmpp298.Assignment3.Task.csproj">
+      <Project>{A747CA6E-EEA1-42E0-BA90-69317F8BF45D}</Project>
+      <Name>Cmpp298.Assignment3.Task</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

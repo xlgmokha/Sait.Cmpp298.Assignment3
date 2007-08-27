@@ -1,0 +1,124 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{21D2672E-ED28-4AFF-BD5F-8D80469EA681}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cmpp298.Assignment3.Desktop.UI</RootNamespace>
+    <AssemblyName>Cmpp298.Assignment3.Desktop.UI</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DeleteInvoiceView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteInvoiceView.Designer.cs">
+      <DependentUpon>DeleteInvoiceView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditInvoiceView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditInvoiceView.Designer.cs">
+      <DependentUpon>EditInvoiceView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewInvoiceView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewInvoiceView.Designer.cs">
+      <DependentUpon>NewInvoiceView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InvoicesMainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvoicesMainView.Designer.cs">
+      <DependentUpon>InvoicesMainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DeleteInvoiceView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DeleteInvoiceView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditInvoiceView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditInvoiceView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewInvoiceView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NewInvoiceView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvoicesMainView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>InvoicesMainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cmpp298.Assignment3.Desktop.Adapters\Cmpp298.Assignment3.Desktop.Adapters.csproj">
+      <Project>{097FDBD3-0339-4D79-AE80-1AD1407B15F0}</Project>
+      <Name>Cmpp298.Assignment3.Desktop.Adapters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cmpp298.Assignment3.Desktop.Presentation\Cmpp298.Assignment3.Desktop.Presentation.csproj">
+      <Project>{62EA2002-B0ED-4E9C-945E-B77552A0669C}</Project>
+      <Name>Cmpp298.Assignment3.Desktop.Presentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cmpp298.Assignment3.Dto\Cmpp298.Assignment3.Dto.csproj">
+      <Project>{29260A8E-3F7B-4D9B-BBE3-81210F4B9E5B}</Project>
+      <Name>Cmpp298.Assignment3.Dto</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,8 @@
+Create a Windows Forms application to support data maintenance (CRUD functionality) of Invoices per Vendor in the Payables database. 
+Make use of the Connection, Transaction, Command, and DataReader objects of the ADO.NET SQLClient Provider, 
+not DataSets, DataTables, DataAdapters or the Configuration Wizard.
+
+The user has to select a Vendor and then view, add, edit or delete Invoice records for the selected vendor. 
+Changes have to be saved before the user can select another vendor.
+
+Feel free to make use of a combination of UI controls such as Grids, TextBoxes, ComboBoxes, etc. 

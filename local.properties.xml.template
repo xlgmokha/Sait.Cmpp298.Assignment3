@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<properties>
+	<property name="sql.tools.path" value="C:\program files\microsoft sql server\90\tools\binn\" />
+	<property name="sqlcmd.connectionstring" value="-E"/>
+	<property name="sqlcmd.exe"  value="${sql.tools.path}\sqlcmd.exe" />
+	<property name="initial.catalog" value="Payables"/>					
+	<property name="config.connectionstring" value="data source=(local);Integrated Security=SSPI;Initial Catalog=${initial.catalog}"/>
+	<property name="database.provider" value="System.Data.SqlClient" />
+	<property name="database.path" value="C:\development\databases" />		
+	<property name="system.root" value="C:\windows\"/>
+</properties>
